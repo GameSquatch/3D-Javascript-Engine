@@ -1,37 +1,25 @@
-<!--
-Code By: Zeke Williams
-Date: July 22, 2018
-
-Description:
-    I FREAKING DID IT! I didn't think I would
-    ever learn how 3d projection worked because
-    no one on here would explain it better or
-    point to thorough sources. Anyways, shoutout
-    to Dylan Missuwe for inspiring me to learn.
-    Everything I needed was contained on this page:
-    https://en.wikipedia.org/wiki/3D_projection#cite_note-3
-    Matrices can be used, but I have doubts about
-    its performance value...anyways, I hope this
-    will be helpful to all wanting to learn
-    about 3d graphics.
-
-Version: 1.1
-
-Update: 1.1 - Added Drawing Order (Z-Buffer)
-              but it doesn't work quite right yet.
--->
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="style.css"></script>
-  <script type="text/javascript" language="javascript" src="mesh.js"></script>
-  <title>Engine</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<link href="./style.css" />
 </head>
-
 <body>
-  <span id="fps"></span>
-  <canvas id="can"></canvas>
-</body>
+	
+	<canvas id="canvas"></canvas>
+	<!-- <canvas id="can"></canvas>
+	<span id="fps"></span> -->
 
+	<script src="./Vec3D.js"></script>
+	<script src="./Face.js"></script>
+	<script src="./Camera.js"></script>
+	<script src="./DrawableEntity.js"></script>
+	<script src="./Cube.js"></script>
+	<script src="./index.js"></script>
+	<!-- <script src="./mesh.js"></script> -->
+</body>
 </html>

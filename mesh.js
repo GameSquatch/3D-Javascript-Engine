@@ -174,29 +174,29 @@ function calcdxyz(vertex) {
 }
 
 function drawFaces(c, face) {
-    // xy is the two-element-array returned from calcdxyz. Here it is for the first vertex. We do this to use
-    // the contexts moveTo function for each face, so we start over every time we draw a new face
-    let xy = calcdxyz(face.vertex(0));
+	// xy is the two-element-array returned from calcdxyz. Here it is for the first vertex. We do this to use
+	// the contexts moveTo function for each face, so we start over every time we draw a new face
+	let xy = calcdxyz(face.vertex(0));
 
-    // new Vec3d(255, 120, 120); // 
-    // console.log(face.normal);
-    let color = shader(face.normal, face.color);
+	// new Vec3d(255, 120, 120); // 
+	// console.log(face.normal);
+	let color = shader(face.normal, face.color);
 
-    c.beginPath();
-    c.fillStyle = `rgba(${Math.round(color.x)}, ${Math.round(color.y)}, ${Math.round(color.z)}, 1)`;
-    c.moveTo(xy[0], xy[1]);// use xy[0] to get x and xy[1] for y
+	c.beginPath();
+	c.fillStyle = `rgba(${Math.round(color.x)}, ${Math.round(color.y)}, ${Math.round(color.z)}, 1)`;
+	c.moveTo(xy[0], xy[1]);// use xy[0] to get x and xy[1] for y
 
-    // for every vertex in the passed in face
-    for (let i = 1; i < face.verts.length; ++i) {
-        // set xy to the calculated x and y screen points for that vertex
-        xy = calcdxyz(face.vertex(i));
-        // draw a line to those screen positions
-        c.lineTo(xy[0], xy[1]);
-    }
+	// for every vertex in the passed in face
+	for (let i = 1; i < face.verts.length; ++i) {
+		// set xy to the calculated x and y screen points for that vertex
+		xy = calcdxyz(face.vertex(i));
+		// draw a line to those screen positions
+		c.lineTo(xy[0], xy[1]);
+	}
 
-    c.closePath();
-    
-    c.fill();
+	c.closePath();
+	
+	c.fill();
     
 }
 
