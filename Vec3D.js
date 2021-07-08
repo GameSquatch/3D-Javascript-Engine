@@ -34,6 +34,8 @@ class Vec3D {
 		this.x *= scalar;
 		this.y *= scalar;
 		this.z *= scalar;
+
+		return this;
 	}
 
 	cross(vec) {

@@ -37,6 +37,8 @@
 	//mesh = new Mesh(24); // MESH GOES LAST
 	const cube = new Cube(new Vec3D(0, 0, 0), 2);
 
+	const cube2 = new Cube(new Vec3D(4, 0, 0), 1);
+
 	// light is just a position
 	
 	// make center of the canvas the origin
@@ -75,8 +77,15 @@
   
 		// light.x = Math.sin(frames * spinSpeed * 3) * 5;
 		// light.z = Math.sin(frames * spinSpeed) * 20;
-  
-		cube.update(c, cam);
+		const dist1 = Vec3D.distance(cube.pos, cam.pos);
+		const dist2 = Vec3D.distance(cube2.pos, cam.pos);
+		if (dist1 > dist2) {
+			cube.update(c, cam);
+			cube2.update(c, cam);
+		} else {
+			cube2.update(c, cam);
+			cube.update(c, cam);
+		}
 		
 		// increment frame count and calc fps
 		frames++;

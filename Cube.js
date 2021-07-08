@@ -3,19 +3,18 @@
 class Cube extends DrawableEntity {
 	constructor(posVec, width) {
 		super();
-
-		const offset = width / 2;
+		this.pos = posVec;
 
 		// Not spreading because it will be read-only anyways
 		this.vertices = [
-			new Vec3D(-1, 1, 1).add(posVec),//top left
-			new Vec3D(1, 1, 1).add(posVec),// top right
-			new Vec3D(1, -1, 1).add(posVec),// bottom right
-			new Vec3D(-1, -1, 1).add(posVec),// bottom left
-			new Vec3D(-1, 1, -1).add(posVec),
-			new Vec3D(1, 1, -1).add(posVec),
-			new Vec3D(1, -1, -1).add(posVec),
-			new Vec3D(-1, -1, -1).add(posVec)
+			new Vec3D(-1, 1, 1).scale(width).add(posVec),//top left
+			new Vec3D(1, 1, 1).scale(width).add(posVec),// top right
+			new Vec3D(1, -1, 1).scale(width).add(posVec),// bottom right
+			new Vec3D(-1, -1, 1).scale(width).add(posVec),// bottom left
+			new Vec3D(-1, 1, -1).scale(width).add(posVec),
+			new Vec3D(1, 1, -1).scale(width).add(posVec),
+			new Vec3D(1, -1, -1).scale(width).add(posVec),
+			new Vec3D(-1, -1, -1).scale(width).add(posVec)
 		];
 
 		this.faces = [
