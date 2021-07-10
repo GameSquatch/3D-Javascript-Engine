@@ -7,7 +7,8 @@
 	can.width = W;
 	can.height = H;
 	let frames = 0;
-	const spinSpeed = 0.006;
+	const spinSpeed = 0.0006;
+	let spinAmt = 0;
 	
 	const domFPS = document.getElementById("fps");
 	let prevTime = null;
@@ -50,14 +51,26 @@
 
 	function draw(timestamp = null) {
 		requestAnimationFrame(draw);
+		// increment frame count and calc fps
+		frames++;
+		fps = calcFPS(timestamp);
+		
+		// only update fps span content every 8 frames
+		if (!(frames % 8)) {
+			 domFPS.textContent = fps;
+		}
+
+		if (frameTime === null) {
+			return;
+		}
   
 		// clear the canvas each frame before drawing on it using white
 		c.clearRect(-W / 2, -H / 2, W, H);
   
 		// every frame I need to update the camera in its circular path around the cube and set it.
 		// y = (Math.sin(frames * spinSpeed) + 1) / 2 * 4 + 1;
-		x = Math.sin(frames * spinSpeed) * 20;
-		z = Math.cos(frames * spinSpeed) * 20;
+		x = Math.sin(spinAmt) * 20;
+		z = Math.cos(spinAmt) * 20;
 		cam.pos.x = x;
 		cam.pos.z = z;
 		// cam.pos.y = y;
@@ -69,7 +82,7 @@
 		// cube anymore. This is because the camera will always point in one direction unless we change it. Here,
 		// I used the same number that I used to update the camera position. This makes it so that the camera,
 		// while moving around the cube, also points at the cube as well.
-		cam.rotation.y += spinSpeed;//gamma
+		cam.rotation.y = spinAmt;//gamma
 		cam.rotation.y %= Math.PI * 2;
 		// cam.theta += 0.001;
 		// cam.theta %= Math.PI * 2;
@@ -88,14 +101,7 @@
 			cube.update(c, cam);
 		}
 		
-		// increment frame count and calc fps
-		frames++;
-		fps = calcFPS(timestamp);
-		
-		// only update fps span content every 8 frames
-		if (!(frames % 8)) {
-			 domFPS.textContent = fps;
-		}
+		spinAmt += frameTime * spinSpeed;
   }
 
 
