@@ -332,14 +332,7 @@ function calcFaceCenter(verts) {
 
     return center;
 }
-// calculate fps function
-function calcFPS() {
-    let diff = Date.now() - prevTime;
-    
-    prevTime = Date.now();
-    
-    return Math.round(1000 / diff);
-}
+
 
 function shader(norm, faceColor) {
 

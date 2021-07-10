@@ -87,7 +87,7 @@ class Cube extends DrawableEntity {
 		}
 
 		context.closePath();
-		context.fillStyle = `rgba(${face.randR}, ${face.randG}, ${face.randB}, 0.88)`;
+		context.fillStyle = `rgba(${face.randR}, ${face.randG}, ${face.randB}, 0.82)`;
 		context.fill();
 		context.strokeStyle = 'black';
 		context.stroke();

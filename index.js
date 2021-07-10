@@ -9,8 +9,9 @@
 	let frames = 0;
 	const spinSpeed = 0.006;
 	
-	//domFPS = document.getElementById("fps");
-	//prevTime = Date.now();
+	const domFPS = document.getElementById("fps");
+	let prevTime = null;
+	let frameTime = null;
 
 	// here is where I create the 'camera' object. The parameters are: Camera(x, y, z, theta, gamma, delta)
 	// x, y, and z are the 3d position coordinates, and theta, gamma, and delta are the angles relative to the
@@ -47,7 +48,7 @@
 	draw();
 
 
-	function draw() {
+	function draw(timestamp = null) {
 		requestAnimationFrame(draw);
   
 		// clear the canvas each frame before drawing on it using white
@@ -89,11 +90,23 @@
 		
 		// increment frame count and calc fps
 		frames++;
-		//fps = calcFPS();
+		fps = calcFPS(timestamp);
 		
 		// only update fps span content every 8 frames
-		//if (!(frames % 8)) {
-		//	 domFPS.textContent = fps;
-		//}
+		if (!(frames % 8)) {
+			 domFPS.textContent = fps;
+		}
   }
+
+
+	function calcFPS(timestamp) {
+		if (timestamp === null) {
+			prevTime = timestamp;
+			return -1;
+		}
+		frameTime = timestamp - prevTime;
+		prevTime = timestamp;
+
+		return Math.round(1000 / frameTime);
+	}
 })(window);
